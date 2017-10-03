@@ -65,8 +65,12 @@ Layout.prototype = {
                     '</div>'+
                     southTabs+
                 '</div>'+
+                '<div class="cwrc ui-layout-east" id="cwrcEastContent">'+
+                '</div>'+
             '</div>'
         );
+        
+        var iv = this.w.layoutModules.addImageViewerPanel(this.w, 'cwrcEastContent');
         
         this.ui = $('#cwrc_wrapper').layout({
             defaults: {
@@ -89,6 +93,13 @@ Layout.prototype = {
                     var tabsHeight = $('#westTabs > ul').outerHeight();
                     $('#westTabsContent').height(state.layoutHeight - tabsHeight);
 //                    $.layout.callbacks.resizeTabLayout(region, pane);
+                }
+            },
+            east: {
+                size: 'auto',
+                minSize: 325,
+                onresize: function(region, pane, state, options) {
+                    iv.resizeImage();
                 }
             }
         });
@@ -127,10 +138,10 @@ Layout.prototype = {
         this.w.layoutModules.addEntitiesListPanel(this.w, 'westTabsContent');
         this.w.layoutModules.addRelationsListPanel(this.w, 'westTabsContent');
         
+        
         if (!this.w.isReadOnly) {
             this.w.layoutModules.addValidationPanel(this.w, 'southTabsContent');
             this.w.layoutModules.addSelectionPanel(this.w, 'southTabsContent');
-
         }
         
         $('#westTabs').tabs({
