@@ -5,11 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <title>CWRC-Writer</title>
         
-        <link type="text/css" rel="stylesheet" href="css/style.css" />
-        <link type="text/css" rel="stylesheet" href="css/layout-default-latest.css" />
-        <link type="text/css" rel="stylesheet" href="css/cwrc12/jquery-ui.css" />
-        <link type="text/css" rel="stylesheet" href="css/prism.css" />
-        <link type="text/css" rel="stylesheet" href="css/editor.css" />
     </head>
     <body>
         <div id="cwrcWriterContainer" style="height: 100%; width: 100%;"></div>
@@ -22,7 +17,8 @@
         	var writer = new CWRCWriter(config);
         	writer.init("cwrcWriterContainer");
         	writer.event('writerInitialized').subscribe(function() {
-        	    writer.loadDocument($.parseXML('<TEI><body><div><p>Insert text here</p></div></body></TEI>'));
+        	    //writer.loadDocument($.parseXML('<TEI><body><div><p>Insert text here</p></div></body></TEI>'));
+        	    writer.fileManager.loadDocumentFromUrl('http://localhost:8080/cwrcnpm/xml/JCB-001.xml')
         	});
        	</script>
     </body>

@@ -21,6 +21,15 @@ Layout.prototype = {
      * @returns jquery-ui class
      */
     init: function(container, textareaId) {
+        // TODO use https://github.com/GedMarc/layout
+        // TODO
+        $(document.head).append(''+
+            '<link type="text/css" rel="stylesheet" href="'+this.w.cwrcRootUrl+'css/cD/cD.css" />'+
+            '<link type="text/css" rel="stylesheet" href="'+this.w.cwrcRootUrl+'css/cD/font-awesome.css" />'+
+            '<link type="text/css" rel="stylesheet" href="'+this.w.cwrcRootUrl+'css/bootstrap.min.css" />'
+        );
+        
+        
         var cwrcName = 'CWRC-Writer';
         var version = '0.9';
         var southTabs = ''+
@@ -54,7 +63,11 @@ Layout.prototype = {
                             '<li><a href="#structure">Structure</a></li>'+
                             '<li><a href="#relations">Relations</a></li>'+
                         '</ul>'+
-                        '<div id="westTabsContent" class="ui-layout-content"></div>'+
+                        '<div id="westTabsContent" class="ui-layout-content">'+
+                            '<div id="entities" />'+
+                            '<div id="structure" />'+
+                            '<div id="relations" />'+
+                        '</div>'+
                     '</div>'+
                 '</div>'+
                 '<div id="cwrc_main" class="ui-layout-center">'+
@@ -134,9 +147,9 @@ Layout.prototype = {
             }
         });
         
-        this.w.layoutModules.addStructureTreePanel(this.w, 'westTabsContent');
-        this.w.layoutModules.addEntitiesListPanel(this.w, 'westTabsContent');
-        this.w.layoutModules.addRelationsListPanel(this.w, 'westTabsContent');
+        this.w.layoutModules.addStructureTreePanel(this.w, 'structure');
+        this.w.layoutModules.addEntitiesListPanel(this.w, 'entities');
+        this.w.layoutModules.addRelationsListPanel(this.w, 'relations');
         
         
         if (!this.w.isReadOnly) {
